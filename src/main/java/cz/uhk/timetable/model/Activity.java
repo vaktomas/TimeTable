@@ -2,15 +2,21 @@ package cz.uhk.timetable.model;
 
 // POJO Timetable activity
 
+import com.google.gson.annotations.SerializedName;
 import java.time.LocalTime;
 
 public class Activity {
+    @SerializedName("predmet")
     private String id;          //zkratka predmetu
     private String name;        //cele jmeno modulu
     private String teacher;     //ucitele
     private String day;
     private String type;        //cviceni, prednaska atd.
-    private LocalTime from, to;
+
+    @SerializedName("hodinaSkutOd")
+    private LocalTime from;
+    @SerializedName("hodinaSkutDo")
+    private LocalTime to;
 
     public Activity() {
     }
