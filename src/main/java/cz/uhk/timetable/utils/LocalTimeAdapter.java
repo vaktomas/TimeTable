@@ -7,6 +7,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.LocalTime;
 
+//adapter pro GSON, prevadi JSON format casu na objekt localtime
 public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
     @Override
     public void write(JsonWriter jsonWriter, LocalTime localTime) throws IOException {

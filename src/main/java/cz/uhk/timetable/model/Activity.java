@@ -5,14 +5,18 @@ package cz.uhk.timetable.model;
 import com.google.gson.annotations.SerializedName;
 import java.time.LocalTime;
 
+//rozvrhove akce
 public class Activity {
     @SerializedName("predmet")
-    private String id;          //zkratka predmetu
-    private String name;        //cele jmeno modulu
-    private String teacher;     //ucitele
+    private String id;
+    @SerializedName("nazev")
+    private String name;
+    @SerializedName("ucitel")
+    private Teacher teacher;
+    @SerializedName("denZkr")
     private String day;
+    @SerializedName("typAkceZkr")
     private String type;        //cviceni, prednaska atd.
-
     @SerializedName("hodinaSkutOd")
     private LocalTime from;
     @SerializedName("hodinaSkutDo")
@@ -21,7 +25,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String id, String name, String teacher, String day, String type, LocalTime from, LocalTime to) {
+    public Activity(String id, String name, Teacher teacher, String day, String type, LocalTime from, LocalTime to) {
         this.id = id;
         this.name = name;
         this.teacher = teacher;
@@ -48,10 +52,15 @@ public class Activity {
     }
 
     public String getTeacher() {
-        return teacher;
+        if (teacher == null) return "";
+        if (teacher != null) {
+            return teacher.toString();
+        } else {
+            return "Nezadáno";
+        }
     }
 
-    public void setTeacher(String teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 

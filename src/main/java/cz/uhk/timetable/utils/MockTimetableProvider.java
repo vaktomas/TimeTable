@@ -13,19 +13,21 @@ public class MockTimetableProvider implements ITimetableProvider {
         var tt = new LocationTimetable("J", "J22");
 
         tt.getActivities().add(new Activity(
-                "PRO1", "Programovani I", "Kozel",
+                "PRO1", "Programovani I", null,
                 "Pondeli", "Cviceni",
                 LocalTime.of(11, 35),
                 LocalTime.of(13,05)
         ));
+
         tt.getActivities().add(new Activity(
-                "PRO1", "Programovani I", "Kozel",
+                "PRO1", "Programovani I", null,
                 "Utery", "Prednaska",
                 LocalTime.of(9, 05),
                 LocalTime.of(10,35)
         ));
+
         tt.getActivities().add(new Activity(
-                "ZMAT2", "Zaklady matematiky II", "Bauer",
+                "ZMAT2", "Zaklady matematiky II", null,
                 "Pondeli", "Prednaska",
                 LocalTime.of(10, 45),
                 LocalTime.of(12,15)
