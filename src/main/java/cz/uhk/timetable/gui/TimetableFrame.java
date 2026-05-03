@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 //hlavni graficke okno aplikace
 public class TimetableFrame extends JFrame {
-    private StagTimetableProvider timetableProvider = new StagTimetableProvider();
-    private LocationTimetable timetable = new LocationTimetable("", "");
-    private JTable tabTimetable;
-    private TimetableModel timetableModel;
+    private StagTimetableProvider timetableProvider = new StagTimetableProvider(); //umi stahovat data z internetu
+    private LocationTimetable timetable = new LocationTimetable("", ""); //aktualne stazeny rozvrh
+    private JTable tabTimetable; //samotna tabulka
+    private TimetableModel timetableModel; //rika co ma v kterem policku robrazit
 
     private JComboBox<Room> comboRooms;
     private JButton btnLoad;
@@ -27,18 +27,18 @@ public class TimetableFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        initGui();
+        initGui(); //vytvori graficke prvky
 
-        // nacteni seznamu mistnosti
-        loadRoomList();
 
-        pack();
-        setLocationRelativeTo(null);
+        loadRoomList(); // nacteni seznamu mistnosti
+
+        pack(); //upravi velikost okna podle obsahu
+        setLocationRelativeTo(null); //vycentrovani okna na stred obrazovky
     }
 
     private void initGui() {
         // horni panel pro vyber
-        JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); //prvky se radi vedle sebe
         northPanel.add(new JLabel("Vyberte místnost:"));
 
         comboRooms = new JComboBox<>();
@@ -54,7 +54,7 @@ public class TimetableFrame extends JFrame {
         // tabulka uprostred
         timetableModel = new TimetableModel();
         tabTimetable = new JTable(timetableModel);
-        add(new JScrollPane(tabTimetable), BorderLayout.CENTER);
+        add(new JScrollPane(tabTimetable), BorderLayout.CENTER); //scroll
     }
 
     private void loadRoomList() {
@@ -66,12 +66,12 @@ public class TimetableFrame extends JFrame {
     }
 
     private void loadData() {
-        Room selected = (Room) comboRooms.getSelectedItem();
+        Room selected = (Room) comboRooms.getSelectedItem(); //zjisti co uzivatel vybral
         if (selected != null) {
             try {
-                LocationTimetable rawData = timetableProvider.readTimetable(selected.getBuilding(), selected.getRoomNumber());
+                LocationTimetable rawData = timetableProvider.readTimetable(selected.getBuilding(), selected.getRoomNumber()); //surova data z internetu
 
-                List<Activity> filtered = rawData.getActivities().stream()
+                List<Activity> filtered = rawData.getActivities().stream() //projede svechny aktivity a vybere ty ktere jsou dane
                         .filter(a -> a.getType() != null && (
                                 a.getType().equalsIgnoreCase("Př") || // prednaska
                                         a.getType().equalsIgnoreCase("Cv") || // cviceni
@@ -79,8 +79,8 @@ public class TimetableFrame extends JFrame {
                         ))
                         .collect(Collectors.toList());
 
-                timetable.setActivities(filtered);
-                timetableModel.fireTableDataChanged();
+                timetable.setActivities(filtered); //ulozi prefiltroavna data
+                timetableModel.fireTableDataChanged(); //prepise ty data
             } catch (Exception ex) {
                 ex.printStackTrace(); // pomuze videt chybu v konzoli
                 JOptionPane.showMessageDialog(this, "Chyba: " + ex.getMessage());
@@ -110,7 +110,7 @@ public class TimetableFrame extends JFrame {
                 case 2 -> a.getTeacher();
                 case 3 -> a.getType();
                 case 4 -> a.getDay();
-                case 5 -> a.getFrom() != null ? a.getFrom().format(timeFormatter) : "";
+                case 5 -> a.getFrom() != null ? a.getFrom().format(timeFormatter) : ""; //pokud cas existuje, udelej format, jinak ""
                 case 6 -> a.getTo() != null ? a.getTo().format(timeFormatter) : "";
                 default -> null;
             };

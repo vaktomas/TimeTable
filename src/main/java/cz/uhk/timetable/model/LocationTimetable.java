@@ -5,15 +5,16 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+//cela tabulka vsech hodin dohromady
 public class LocationTimetable {
     private String building;
     private String room;
 
 
-    @SerializedName("rozvrhovaAkce")
+    @SerializedName("rozvrhovaAkce") //jmeno v JSONu
     private List<Activity> activities = new ArrayList<>();
 
-    public LocationTimetable() {
+    public LocationTimetable() { //prazdny balicek aby se mohl naplnit daty
     }
 
     public LocationTimetable(String building, String room) {

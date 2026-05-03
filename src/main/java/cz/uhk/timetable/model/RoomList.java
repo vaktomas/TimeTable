@@ -5,8 +5,8 @@ import java.util.List;
 
 // pomocna trida pro GSON
 public class RoomList {
-    @SerializedName("mistnostInfo")
-    private List<Room> rooms;
+    @SerializedName("mistnostInfo") //JSON jmeno
+    private List<Room> rooms;       //ulozi se do seznamu rooms
 
     public List<Room> getRooms() {
         return rooms;

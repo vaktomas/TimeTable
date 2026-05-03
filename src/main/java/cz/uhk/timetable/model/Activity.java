@@ -7,8 +7,8 @@ import java.time.LocalTime;
 
 //rozvrhove akce
 public class Activity {
-    @SerializedName("predmet")
-    private String id;
+    @SerializedName("predmet")  //nazev pole v JSON
+    private String id;          //nas nazev
     @SerializedName("nazev")
     private String name;
     @SerializedName("ucitel")
@@ -22,7 +22,7 @@ public class Activity {
     @SerializedName("hodinaSkutDo")
     private LocalTime to;
 
-    public Activity() {
+    public Activity() { //prazdny obejkt do ktereho se pak daji data
     }
 
     public Activity(String id, String name, Teacher teacher, String day, String type, LocalTime from, LocalTime to) {
@@ -97,7 +97,7 @@ public class Activity {
     }
 
     @Override
-    public String toString() {
+    public String toString() { //muzu si v konzoli overit vsechny informace o te hodine
         return "Activity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +

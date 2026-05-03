@@ -5,6 +5,7 @@ import cz.uhk.timetable.model.LocationTimetable;
 
 import java.time.LocalTime;
 
+//slouzi jako simulaec dat na testovani
 public class MockTimetableProvider implements ITimetableProvider {
 
 

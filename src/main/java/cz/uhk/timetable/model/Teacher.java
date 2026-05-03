@@ -15,7 +15,7 @@ public class Teacher {
     public String toString() {
         // posklada jmeno "Mgr. Jan Novák"
         String t = "";
-        if (title != null && !title.isEmpty()) {
+        if (title != null && !title.isEmpty()) { //zkontroluje title a jestli  v nem neco je
             t = title + " ";
         }
         return t + firstName + " " + lastName;
